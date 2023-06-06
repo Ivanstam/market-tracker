@@ -5,7 +5,18 @@
   </div>
 
   <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-    <form class="space-y-3" @submit=register>
+    <div v-if="errorMessage"
+         class="flex items-center justify-between py-3 px-2 mb-2 bg-gradient-to-br from-red-400 to-red-600 rounded">
+      {{ errorMessage }}
+      <span @click="errorMessage = ''" class="w-8 h-8 flex items-center justify-center rounded-full transition-colors
+      cursor-pointer hover:bg-red-400">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+             stroke-width="1.5" stroke="currentColor" class="w-6 h-6 flex">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </span>
+    </div>
+    <form class="space-y-3" @submit='register'>
       <div>
         <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
         <div class="mt-2">
@@ -49,7 +60,7 @@
       <div>
         <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm
         font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2
-        focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
+        focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign up</button>
       </div>
     </form>
 
@@ -66,6 +77,7 @@
 <script setup>
 import store from '../store';
 import {useRouter} from 'vue-router';
+import {ref} from "vue";
 
 const router = useRouter();
 
@@ -76,15 +88,20 @@ const user = {
   password_confirmation: ''
 };
 
+let errorMessage = ref('');
+
 function register(ev) {
-  // Don't redirect when register fails
   ev.preventDefault();
   store
     .dispatch('register', user)
-    .then(() => {
+    .then((res) => {
       router.push({
         name: 'Dashboard'
       })
+    })
+    .catch(error => {
+      let data = error.response.data;
+      data.message ? errorMessage.value = data.message : errorMessage.value = data.error;
     })
 }
 </script>

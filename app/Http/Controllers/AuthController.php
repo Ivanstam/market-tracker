@@ -39,10 +39,13 @@ class AuthController extends Controller
         $credentials = $request->validate([
             'email' => 'required|email|string|exists:users,email',
             'password' => 'required',
-
+            'remember' => 'boolean'
         ]);
 
-        if (!Auth::attempt($credentials)) {
+        $remember = $credentials['remember'] ?? false;
+        unset($credentials['remember']);
+
+        if (!Auth::attempt($credentials, $remember)) {
             return response([
                 'error' => 'The email/password combination does not exist'
             ], 422);
