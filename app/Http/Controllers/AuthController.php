@@ -59,4 +59,16 @@ class AuthController extends Controller
             'token' => $token,
         ]);
     }
+
+    // Log out the currently logged in user
+    public function logout()
+    {
+        /** @var User $user */
+        $user = Auth::user();
+        $user->currentAccessToken()->delete();
+
+        return response([
+            'succes' => true
+        ]);
+    }
 }

@@ -11,30 +11,39 @@ const store = createStore({
   getters: {},
   actions: {
     async register({commit}, user) {
-      // Post request to the auth controller return user data and token to state and session
-      return axiosClient.post('/register', user)
+      // Post request to the auth controller, return user data and token to state and session
+      return await axiosClient.post('/register', user)
       // Destructure the response
-      .then((data) => {
-        commit('setUser', data.data);
-        return data;
+      .then((response) => {
+        commit('setUser', response.data);
+        return response.data;
       })
     },
 
     async login({commit}, user) {
-      // Post request to the auth controller return user data and token to state and session
-      return axiosClient.post('/login', user)
+      // Post request to the auth controller, return user data and token to state and session
+      return await axiosClient.post('/login', user)
       // Destructure the response
-      .then((data) => {
-        console.log(data)
-        commit('setUser', data.data);
-        return data;
+      .then((response) => {
+        commit('setUser', response.data);
+        return response.data;
       })
-    }
+    },
+
+    async logout({commit}) {
+      // Post request to the auth controller, with the session to be wiped
+      return await axiosClient.post('/logout')
+        .then((response) => {
+          commit('logout')
+          return response.data;
+        });
+    },
   },
   mutations: {
     logout: (state) => {
       state.user.data = {};
       state.user.token = null;
+      sessionStorage.removeItem('TOKEN');
     },
     setUser: (state, userData) => {
       console.log(userData);
