@@ -3,6 +3,7 @@ import Dashboard from "../views/Dashboard.vue";
 import Login from "../views/Login.vue";
 import Register from "../views/Register.vue";
 import Stocks from "../views/Stocks.vue";
+import StockDetails from "../views/StockDetails.vue";
 import DefaultLayout from "../components/DefaultLayout.vue"
 import Authlayout from "../components/Authlayout.vue"
 import store from "../store/index.js";
@@ -15,7 +16,8 @@ const routes = [
     meta: {requiresAuth: true},
     children: [
       {path: '/dashboard', name: 'Dashboard', component: Dashboard},
-      {path: '/stocks', name: 'Stocks', component: Stocks}
+      {path: '/stocks', name: 'Stocks', component: Stocks},
+      {path: '/stocks/:symbol?', name: 'StockDetails', component: StockDetails}
     ]
   },
   {
@@ -24,16 +26,10 @@ const routes = [
     redirect: '/login',
     component: Authlayout,
     meta: {isGuest: true},
-    children: [{
-      path: '/login',
-      name: 'Login',
-      component: Login
-    },
-    {
-      path: '/register',
-      name: 'Register',
-      component: Register
-    }]
+    children: [
+      {path: '/login', name: 'Login', component: Login},
+      {path: '/register', name: 'Register', component: Register}
+    ]
   },
 
 ];
