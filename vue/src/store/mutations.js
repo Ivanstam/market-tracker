@@ -15,5 +15,5 @@ export function setStockInfo(state, stockInfo) {
 }
 
 export function setSearchedStocks(state, searchedStocks) {
-  state.searchedStocks = searchedStocks.data;
+  state.searchedStocks = searchedStocks.data.bestMatches;
 }
