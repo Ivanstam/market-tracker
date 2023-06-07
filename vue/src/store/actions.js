@@ -1,6 +1,6 @@
-import { laravelClient } from '../axios.js'
+import {laravelClient, stockClient} from '../axios.js'
 
-const key = import.meta.env.VITE_API_SECRET_KEY;
+const key = import.meta.env.VITE_API_ALPHA_KEY;
 
 export function register({commit}, user) {
     // Post request to the auth controller, return user data and token to state and session
@@ -21,10 +21,18 @@ export function login({commit}, user) {
 }
 
 export function logout({commit}) {
-    // Post request to the auth controller, with the session to be wiped
-    return laravelClient.post('/logout')
-      .then((response) => {
-        commit('logout')
-        return response.data;
-    })
+  // Post request to the auth controller, with the session to be wiped
+  return laravelClient.post('/logout')
+    .then((response) => {
+      commit('logout')
+      return response.data;
+  })
+}
+
+export function getStockInfo({ commit }, symbol) {
+  return stockClient.get(`query?function=OVERVIEW&symbol=${symbol}&apikey=${key}`)
+    .then((response) => {
+      commit('setStockInfo', response)
+      return response;
+    });
 }

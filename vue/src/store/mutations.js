@@ -5,7 +5,11 @@ export function setUser (state, userData) {
 }
 
 export function logout (state) {
-    state.user.data = {};
-    state.user.token = null;
-    sessionStorage.removeItem('TOKEN');
+  state.user.data = {};
+  state.user.token = null;
+  sessionStorage.removeItem('TOKEN');
+}
+
+export function setStockInfo(state, stockInfo) {
+  state.stockInfo = stockInfo.data;
 }

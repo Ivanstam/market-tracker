@@ -2,6 +2,7 @@ import {createStore} from "vuex";
 import * as actions from './actions'
 import * as mutations from './mutations'
 
+// symbol search
 const testStock = [
   {
     symbol: 'BA',
@@ -33,6 +34,7 @@ const store = createStore({
       token: sessionStorage.getItem("TOKEN"),
     },
     stocks: [...testStock],
+    stockInfo: {},
   },
   getters: {},
   actions,

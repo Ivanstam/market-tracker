@@ -17,7 +17,7 @@ const routes = [
     children: [
       {path: '/dashboard', name: 'Dashboard', component: Dashboard},
       {path: '/stocks', name: 'Stocks', component: Stocks},
-      {path: '/stocks/:symbol?', name: 'StockDetails', component: StockDetails}
+      {path: '/stocks/:symbol', name: 'StockDetails', component: StockDetails}
     ]
   },
   {
