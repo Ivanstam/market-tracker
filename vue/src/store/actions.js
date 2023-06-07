@@ -32,7 +32,7 @@ export function logout({commit}) {
 
 // Alphavantage calls/actions
 export function getStockInfo({ commit }, symbol) {
-  return stockClient.get(`query?function=OVERVIEW&symbol=${symbol}&apikey=${key}`)
+  return stockClient.get(`stock/profile2?symbol=${symbol}&token=${key}`)
     .then((response) => {
       commit('setStockInfo', response);
       return response;
@@ -40,7 +40,7 @@ export function getStockInfo({ commit }, symbol) {
 }
 
 export function searchStocks({commit}, keyword) {
-  return stockClient.get(`query?function=SYMBOL_SEARCH&keywords=${keyword}&apikey=${key}`)
+  return stockClient.get(`search?q=${keyword}&token=${key}`)
     .then((response) => {
       commit('setSearchedStocks', response);
       return response;

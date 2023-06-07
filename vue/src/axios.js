@@ -14,7 +14,7 @@ laravelClient.interceptors.request.use(config => {
 
 // Alphavantage API
 const stockClient = axios.create({
-    baseURL: 'https://www.alphavantage.co/'
+    baseURL: 'https://www.finnhub.io/api/v1'
 })
 
 export {laravelClient, stockClient}
