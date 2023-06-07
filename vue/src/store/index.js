@@ -35,6 +35,7 @@ const store = createStore({
     },
     stocks: [...testStock],
     stockInfo: {},
+    searchedStocks: [],
   },
   getters: {},
   actions,

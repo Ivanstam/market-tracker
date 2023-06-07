@@ -13,3 +13,7 @@ export function logout (state) {
 export function setStockInfo(state, stockInfo) {
   state.stockInfo = stockInfo.data;
 }
+
+export function setSearchedStocks(state, searchedStocks) {
+  state.searchedStocks = searchedStocks.data;
+}
