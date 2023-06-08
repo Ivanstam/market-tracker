@@ -21,6 +21,7 @@ function logout(){
 const navigation = [
   { name: 'Dashboard', to: {name: 'Dashboard'}},
   { name: 'Stocks', to: {name: 'Stocks'}},
+  { name: 'Exchanges', to: {name: 'ExchangeList'}}
 ]
 </script>
 

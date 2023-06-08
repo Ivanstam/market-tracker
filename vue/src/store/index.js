@@ -1,6 +1,7 @@
 import {createStore} from "vuex";
 import * as actions from './actions'
 import * as mutations from './mutations'
+import * as getters from './getters.js'
 
 // symbol search
 const testStock = [
@@ -37,7 +38,7 @@ const store = createStore({
     stockInfo: {},
     searchedStocks: [],
   },
-  getters: {},
+  getters,
   actions,
   mutations,
   modules: {}
