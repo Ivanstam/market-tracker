@@ -15,5 +15,14 @@ export function setStockInfo(state, stockInfo) {
 }
 
 export function setSearchedStocks(state, searchedStocks) {
+  console.log(searchedStocks);
   state.searchedStocks = searchedStocks.data;
+}
+
+export function setExchangeStocks(state, exchangeStocks) {
+  state.exchangeStocks = exchangeStocks.data;
+}
+
+export function setExSelection(state, selection) {
+  state.exchangeSelection = selection.data;
 }

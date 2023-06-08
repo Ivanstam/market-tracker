@@ -1,32 +1,6 @@
 import {createStore} from "vuex";
 import * as actions from './actions'
 import * as mutations from './mutations'
-import * as getters from './getters.js'
-
-// symbol search
-const testStock = [
-  {
-    symbol: 'BA',
-    name: 'Boeing Company',
-    type: 'Equity',
-    region: 'United States',
-    currency: 'USD'
-  },
-  {
-    symbol: 'BAB',
-    name: 'Invesco ETF',
-    type: 'ETF',
-    region: 'United States',
-    currency: 'USD'
-  },
-  {
-    symbol: 'BA.LOW',
-    name: 'BAE Systems plc',
-    type: 'Equity',
-    region: 'United Kingdom',
-    currency: 'USD'
-  },
-]
 
 const store = createStore({
   state: {
@@ -34,11 +8,20 @@ const store = createStore({
       data: {},
       token: sessionStorage.getItem("TOKEN"),
     },
-    stocks: [...testStock],
     stockInfo: {},
     searchedStocks: [],
+    exchangeStocks: [],
+    exchangeSelection: Boolean,
   },
-  getters,
+  getters: {
+    paginate: (state) => (index, max) => {
+      return state.exchangeStocks.slice(index, max);
+    },
+    getStockCap: (state) => {
+      const marketCap = state.stockInfo.marketCapitalization;
+      return Math.floor(marketCap).toLocaleString() + ' K';
+    }
+  },
   actions,
   mutations,
   modules: {}
