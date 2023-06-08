@@ -8,6 +8,8 @@ const route = useRoute();
 const symbol = ref('');
 const stockInfo = computed(() => store.state.stockInfo);
 const capFormat = computed(() => store.getters.getStockCap);
+let errorMessage = ref('');
+let errorBool = false;
 
 onMounted(() => {
   symbol.value = route.params.symbol;
@@ -17,14 +19,18 @@ onMounted(() => {
 });
 function getStockInfo() {
   store.dispatch('getStockInfo', symbol.value)
+    .catch((error) => {
+      console.log(error);
+      errorMessage.value = error.response.data.error;
+      errorBool = true;
+    });
 }
 
 </script>
 
 <template>
   <PageComponent title="Stock Details">
-    <div class="p-2 grid cols-1 gap-3 border bg-slate-700 bg-opacity-30 border-slate-500 shadow-md" >
-<!--      <div v-if="!stockInfo.Symbol">Selected Symbol is not a company</div>-->
+    <div v-if="!errorBool" class="p-2 grid cols-1 gap-3 border bg-slate-700 bg-opacity-30 border-slate-500 shadow-md" >
       <div v-html="stockInfo.name" class="text-2xl font-bold"></div>
       <div class="grid grid-cols-5 py-2 px-2 items-stretch">
         <div class="font-bold">Symbol</div>
@@ -44,6 +50,17 @@ function getStockInfo() {
         <div v-html="capFormat"></div>
         <a :href="stockInfo.weburl" class="underline">Link</a>
       </div>
+    </div>
+    <div v-if="errorMessage"
+         class="flex items-center justify-between py-3 px-2 mb-2 bg-gradient-to-br from-red-400 to-red-600 rounded">
+      {{ errorMessage }}
+      <span @click="errorMessage = ''" class="w-8 h-8 flex items-center justify-center rounded-full transition-colors
+      cursor-pointer hover:bg-red-400">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+             stroke-width="1.5" stroke="currentColor" class="w-6 h-6 flex">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </span>
     </div>
     <pre> {{ stockInfo }}</pre>
   </PageComponent>

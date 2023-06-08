@@ -1,5 +1,6 @@
 <script setup>
 import PageComponent from "../components/PageComponent.vue";
+import StockCards from "../components/StockCards.vue";
 import {computed, ref} from "vue";
 import store from "../store/index.js";
 
@@ -11,23 +12,14 @@ function searchExchange() {
 </script>
 
 <template>
-  <PageComponent title="Stock list">
+  <PageComponent title="Exchange list">
+    <button @click="searchExchange" class="flex w-full mb-2 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm
+        font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500">Fetch exchange results</button>
     <div class="grid grid-cols-1 gap-3">
-<!--      <div v-for="stock in searchedStocks" :key="stock.symbol"-->
-<!--           class="grid md:grid-cols-4 items-center py-2 px-6 shadow-md bg-slate-700 transition-colors rounded-->
-<!--         hover:bg-slate-600">-->
-<!--        <div v-html="stock.displaySymbol"></div>-->
-<!--        <div v-html="stock.description" class="text-center"></div>-->
-<!--        <div v-html="stock.type" class="text-center"></div>-->
-<!--        <div class="text-right">-->
-<!--          <router-link :to="{ name: 'StockDetails', params: { symbol: stock.symbol} }" class="py-1 px-2 max-w-fit text-end text-white bg-slate-500 rounded-md hover:drop-shadow-xl">-->
-<!--            Details-->
-<!--          </router-link>-->
-<!--        </div>-->
-<!--      </div>-->
-      <pre>{{ searchedStocks }}</pre>
+<!--      Until pagination just slice all the results for smoothness-->
+      <StockCards :searchedStocks="searchedStocks.slice(0, 20)"/>
     </div>
-    <button @click="searchExchange">Hoi</button>
+    <pre>{{ searchedStocks }}</pre>
   </PageComponent>
 </template>
 

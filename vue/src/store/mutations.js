@@ -16,5 +16,4 @@ export function setStockInfo(state, stockInfo) {
 
 export function setSearchedStocks(state, searchedStocks) {
   state.searchedStocks = searchedStocks.data;
-  console.log(searchedStocks);
 }
