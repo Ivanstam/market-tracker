@@ -27,6 +27,10 @@ const store = createStore({
       const marketCap = state.stockInfo.marketCapitalization;
       return Math.floor(marketCap).toLocaleString() + ' K';
     },
+    // Testing back-end
+    getUser: (state) => {
+      return state.user;
+    }
   },
   actions,
   mutations,

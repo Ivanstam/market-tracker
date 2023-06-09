@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('stocks', function (Blueprint $table) {
             $table->id();
-            $table->string('stock_name', 100);
+            $table->string('stock_name', 100)->nullable();
             $table->text('stock_description')->nullable();
             $table->timestamps();
         });

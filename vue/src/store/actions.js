@@ -30,6 +30,14 @@ export function logout({commit}) {
   })
 }
 
+export function getSavedStocks({ commit }, user) {
+  console.log(user);
+  return laravelClient.get('/backstocks/', user)
+    .then((response) => {
+      console.log(response)
+    });
+}
+
 // Alphavantage calls/actions
 export function getStockInfo({ commit }, symbol) {
   return stockClient.get(`stock/profile2?symbol=${symbol}&token=${key}`)

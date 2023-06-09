@@ -46,6 +46,6 @@ class User extends Authenticatable
 
     public function stocks(): BelongsToMany
     {
-        return $this->belongsToMany(Role::class, 'user_stock');
+        return $this->belongsToMany(Stock::class, 'user_stock');
     }
 }
