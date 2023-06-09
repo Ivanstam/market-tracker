@@ -83,7 +83,8 @@ function register(ev) {
           <label for="password_confirmation" class="block text-sm font-medium leading-6">Password confirmation</label>
         </div>
         <div class="mt-2">
-          <input id="password_confirmation" name="password_confirmation" type="password" autocomplete="current-password_confirmation" required="" v-model="user.password_confirmation"
+          <input id="password_confirmation" name="password_confirmation" type="password"
+                 autocomplete="current-password_confirmation" required="" v-model="user.password_confirmation"
                  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300
                  placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"/>
         </div>

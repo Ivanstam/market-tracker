@@ -49,9 +49,9 @@ function login(ev) {
       <div>
         <label for="email" class="block text-sm font-medium leading-6">Email address</label>
         <div class="mt-2">
-          <input id="email" name="email" type="email" autocomplete="email" required="" v-model="user.email" class="block w-full rounded-md
-          border-0 py-1.5 shadow-sm ring-1 ring-inset text-gray-900 ring-gray-300 placeholder:text-gray-400 focus:ring-2
-          focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+          <input id="email" name="email" type="email" autocomplete="email" required="" v-model="user.email"
+                 class="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset text-gray-900 ring-gray-300
+                 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"/>
         </div>
       </div>
 
@@ -68,7 +68,8 @@ function login(ev) {
 
       <div class="flex items-center justify-between">
         <div class="flex items-center">
-            <input id="remember-me" name="remember-me" type="checkbox" v-model="user.remember" class="h-4 w-4 text-indigo-600 border-gray-300 rounded">
+            <input id="remember-me" name="remember-me" type="checkbox" v-model="user.remember"
+                   class="h-4 w-4 text-indigo-600 border-gray-300 rounded">
             <label for="remember-me" class="ml-2 block text-sm">Remember me</label>
         </div>
       </div>

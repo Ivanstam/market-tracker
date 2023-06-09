@@ -6,22 +6,23 @@ import {computed, ref} from "vue";
 import store from "../store/index.js";
 
 const currentIndex = ref(0);
-const paginatedStocks = computed(() => store.getters.paginate(currentIndex.value, currentIndex.value + 10));
-const exchangeSelect = ref('');
+const keyword = ref('');
+const paginatedStocks = computed(() => store.getters.paginate(currentIndex.value, currentIndex.value + 10, keyword.value));
+const exchangeSelect = ref({ "mic": "XNYS", "name": "New York Stock Exchange"});
 
 function searchExchange() {
-  store.dispatch('searchByExchange');
+  store.dispatch('searchByExchange', exchangeSelect.value.mic);
 }
 
 </script>
 
 <template>
   <PageComponent title="Exchange list">
-<!--    For now using a button to fetch instead of onMounted because of the large API response and to conserve calls-->
     <div class="grid grid-cols-3 gap-3">
       <div class="grid grid-cols-2 gap-3">
-        <button @click="currentIndex -= 10" class="flex w-full mb-2 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm
-          font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500">Previous</button>
+        <button @click="currentIndex -= 10" :disabled="currentIndex < 1"
+                class="flex w-full mb-2 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold
+                leading-6 text-white shadow-sm hover:bg-indigo-500">Previous</button>
         <button @click="currentIndex += 10" class="flex w-full mb-2 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm
           font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500">Next</button>
       </div>
@@ -31,10 +32,11 @@ function searchExchange() {
       <button @click="searchExchange" class="flex w-full mb-2 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm
           font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500">Fetch exchange results</button>
     </div>
-    <div class="grid grid-cols-1 gap-3">
+    <input v-model="keyword" type="text" placeholder="Search for stocks" @change="currentIndex = 0"
+           class="rounded-md h-10 border-1 border-slate-300 w-full text-slate-900"/>
+    <div class="grid grid-cols-1 gap-2 my-2">
       <StockCards :searchedStocks="paginatedStocks"/>
     </div>
-    {{ exchangeSelect }}
   </PageComponent>
 </template>
 

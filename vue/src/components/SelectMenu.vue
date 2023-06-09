@@ -1,6 +1,8 @@
 <template>
   <Listbox as="div" v-model="selected">
-      <ListboxButton class="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6">
+      <ListboxButton class="relative w-full cursor-default rounded-md bg-slate-200 py-1.5 pl-3 pr-10 text-left
+       text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500
+       sm:text-sm sm:leading-6">
         <span class="flex items-center">
           <span class="ml-3 block truncate">{{ selected.name }}</span>
         </span>
@@ -9,15 +11,20 @@
         </span>
       </ListboxButton>
 
-      <transition leave-active-class="transition ease-in duration-100" leave-from-class="opacity-100" leave-to-class="opacity-0">
-        <ListboxOptions class="absolute  mt-1 max-h-56 w-fit overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-          <ListboxOption as="template" v-for="exchange in exchanges" :key="exchange.mic" :value="exchange" v-slot="{ active, selected }">
-            <li :class="[active ? 'bg-indigo-600 text-white' : 'text-gray-900', 'relative cursor-default select-none py-2 pl-3 pr-9']">
+      <transition leave-active-class="transition ease-in duration-100"
+                  leave-from-class="opacity-100" leave-to-class="opacity-0">
+        <ListboxOptions class="absolute  mt-1 max-h-56 w-fit overflow-auto rounded-md bg-slate-200 py-1 text-base
+        shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+          <ListboxOption as="template" v-for="exchange in exchanges" :key="exchange.mic"
+                         :value="exchange" v-slot="{ active, selected }">
+            <li :class="[active ? 'bg-indigo-600 text-white' : 'text-gray-900',
+            'relative cursor-default select-none py-2 pl-3 pr-9']">
               <div class="flex items-center">
                 <span :class="[selected ? 'font-semibold' : 'font-normal', 'ml-3 block truncate']">{{ exchange.name }}</span>
               </div>
 
-              <span v-if="selected" :class="[active ? 'text-white' : 'text-indigo-600', 'absolute inset-y-0 right-0 flex items-center pr-4']">
+              <span v-if="selected" :class="[active ? 'text-white' : 'text-indigo-600',
+              'absolute inset-y-0 right-0 flex items-center pr-4']">
                 <CheckIcon class="h-5 w-5" aria-hidden="true" />
               </span>
             </li>
@@ -32,12 +39,13 @@ import { ref } from 'vue'
 import { Listbox, ListboxButton, ListboxLabel, ListboxOption, ListboxOptions } from '@headlessui/vue'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/vue/20/solid'
 
+// TODO: Make into prop for multi-use
 const exchanges = [
   {mic: 'XNYS', name: 'New York Stock Exchange'},
   {mic: 'BATS', name: 'BATS Global Markets',},
   {mic: 'XNAS', name: 'NASDAQ',},
-  {mic: 'XNCM', name: 'NASDAQ Small market',}
+  {mic: 'XASE', name: 'American Stock Exchange',}
 ]
-const selected = ref(exchanges[3])
+const selected = ref(exchanges[0])
 
 </script>

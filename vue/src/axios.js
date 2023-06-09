@@ -7,7 +7,7 @@ const laravelClient = axios.create({
 })
 // Pass the authorization token along with every request
 laravelClient.interceptors.request.use(config => {
-    // Inject authorization header
+    // Inject authorization header for laravel sanctum
     config.headers.Authorization = `Bearer ${store.state.user.token}`
     return config;
 })

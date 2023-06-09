@@ -47,8 +47,8 @@ export function searchStocks({commit}, keyword) {
     });
 }
 
-export function searchByExchange({commit}) {
-  return stockClient.get(`stock/symbol?exchange=US&mic=XNYS&token=${key}`)
+export function searchByExchange({commit}, mic) {
+  return stockClient.get(`stock/symbol?exchange=US&mic=${mic}&token=${key}`)
     .then((response) => {
       commit('setExchangeStocks', response);
       return response;

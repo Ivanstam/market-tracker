@@ -11,16 +11,22 @@ const store = createStore({
     stockInfo: {},
     searchedStocks: [],
     exchangeStocks: [],
-    exchangeSelection: Boolean,
   },
   getters: {
-    paginate: (state) => (index, max) => {
-      return state.exchangeStocks.slice(index, max);
+
+    // Paginate on the exchange list page also searches the state for keywords, if empty: return everything
+    paginate: (state, getters) => (index, max, keyword) => {
+      let searchedExchangeStock = keyword === '' ?
+        state.exchangeStocks : getters.searchExchangeStocks(keyword);
+      return searchedExchangeStock.slice(index, max);
+    },
+    searchExchangeStocks: (state) => (keyword) => {
+      return state.exchangeStocks.filter(stock => stock.description.match(keyword.toUpperCase()));
     },
     getStockCap: (state) => {
       const marketCap = state.stockInfo.marketCapitalization;
       return Math.floor(marketCap).toLocaleString() + ' K';
-    }
+    },
   },
   actions,
   mutations,
