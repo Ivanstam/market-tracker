@@ -1,3 +1,4 @@
+// Laravel back-end mutations
 export function setUser (state, userData) {
     state.user.token = userData.token;
     state.user.data = userData.user;
@@ -12,6 +13,13 @@ export function logout (state) {
   sessionStorage.removeItem('USER_ID');
 }
 
+// Double wrapping of data property by laravel resource so both action and mutation will unwrap a data layer
+export function setUserStocks(state, userStocks) {
+  state.userStocks = userStocks.data;
+  console.log(userStocks.data);
+}
+
+// Finnhub API data mutations
 export function setStockInfo(state, stockInfo) {
   state.stockInfo = stockInfo.data;
 }
@@ -23,8 +31,5 @@ export function setSearchedStocks(state, searchedStocks) {
 
 export function setExchangeStocks(state, exchangeStocks) {
   state.exchangeStocks = exchangeStocks.data;
-}
-
-export function setExSelection(state, selection) {
-  state.exchangeSelection = selection.data;
+  console.log(exchangeStocks.data)
 }

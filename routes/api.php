@@ -20,7 +20,7 @@ Route::middleware('auth:sanctum')->group(function () {
         return $request->user();
     });
     Route::post('/logout', [AuthController::class, 'logout']);
-    Route::resource('/backstocks', \App\Http\Controllers\StockController::class);
+    Route::resource('/stocks', \App\Http\Controllers\StockController::class);
 });
 Route::post('/register', [Authcontroller::class, 'store']);
 

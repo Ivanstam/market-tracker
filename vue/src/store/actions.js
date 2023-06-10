@@ -1,4 +1,5 @@
 import {laravelClient, stockClient} from '../axios.js'
+import store from "./index.js";
 
 const key = import.meta.env.VITE_API_ALPHA_KEY;
 
@@ -30,11 +31,21 @@ export function logout({commit}) {
   })
 }
 
-export function getSavedStocks({ commit }, user) {
+export function getUserStocks({ commit }, user) {
   console.log(user);
-  return laravelClient.get('/backstocks/', user)
+  return laravelClient.get('/stocks', user)
     .then((response) => {
-      console.log(response)
+      commit('setUserStocks', response.data);
+      return response.data
+    });
+}
+
+export function setUserStock({ commit }) {
+  let stockInfo = JSON.parse(JSON.stringify(store.state.stockInfo));
+  console.log(stockInfo);
+  return laravelClient.post('/stocks', stockInfo)
+    .then((response) => {
+      commit('setUserStocks', response.data)
     });
 }
 

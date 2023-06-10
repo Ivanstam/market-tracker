@@ -26,12 +26,25 @@ function getStockInfo() {
     });
 }
 
+function setUserStock() {
+  console.log(stockInfo.value)
+  store.dispatch('setUserStock', stockInfo.value)
+    .catch((error) => {
+      console.log(error);
+    });
+}
+
 </script>
 
 <template>
   <PageComponent title="Stock Details">
-    <div v-if="!errorBool" class="p-2 grid cols-1 gap-3 border bg-slate-700 bg-opacity-30 border-slate-500 shadow-md" >
-      <div v-html="stockInfo.name" class="text-2xl font-bold"></div>
+    <div v-if="!errorBool" class="p-2 grid gap-3 border bg-slate-700 bg-opacity-30 border-slate-500 shadow-md" >
+      <div class="grid grid-cols-2 relative">
+        <div v-html="stockInfo.name" class="text-2xl font-bold"></div>
+        <button @click="setUserStock" class="absolute right-0 max-w-fit rounded-md bg-indigo-600 px-3 py-1.5 text-sm">
+          Add to portfolio
+        </button>
+      </div>
       <div class="grid grid-cols-5 py-2 px-2 items-stretch">
         <div class="font-bold">Symbol</div>
         <div class="font-bold">Exchange</div>
