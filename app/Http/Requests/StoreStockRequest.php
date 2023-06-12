@@ -22,10 +22,11 @@ class StoreStockRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'ticker' => 'string',
-            'name' => 'required|string',
+            'ticker' => 'required|string',
+            'name' => 'required|string|max:255',
             'currency' => 'string',
-            'marketCapitalization' => ''
+            'marketCapitalization' => 'numeric',
+            'finnhubIndustry' => 'string',
         ];
     }
 }

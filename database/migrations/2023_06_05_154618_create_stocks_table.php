@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('name', 100);
             $table->string('currency', 10);
             $table->double('marketCapitalization');
+            $table->string('finnhubIndustry', 100)->nullable();
             $table->timestamps();
         });
     }

@@ -46,6 +46,7 @@ export function setUserStock({ commit }) {
   return laravelClient.post('/stocks', stockInfo)
     .then((response) => {
       commit('setUserStocks', response.data)
+      return response;
     });
 }
 

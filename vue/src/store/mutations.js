@@ -21,6 +21,7 @@ export function setUserStocks(state, userStocks) {
 
 // Finnhub API data mutations
 export function setStockInfo(state, stockInfo) {
+  console.log(stockInfo.data);
   state.stockInfo = stockInfo.data;
 }
 

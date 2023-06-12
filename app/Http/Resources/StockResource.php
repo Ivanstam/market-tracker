@@ -16,9 +16,11 @@ class StockResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
+            'symbol' =>$this->ticker,
+            'description' => $this->name,
             'currency' => $this->currency,
-            'marketCapitalization' => $this->marketCapitalization
+            'marketCapitalization' => $this->marketCapitalization,
+            'type' => $this->finnhubIndustry,
         ];
     }
 }

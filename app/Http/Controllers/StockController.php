@@ -27,20 +27,29 @@ class StockController extends Controller
      */
     public function store(StoreStockRequest $request)
     {
-        // Create a new stock from the validated data and write to DB, then attach (m2m) it to the current user
+        // Attempt to store a stock if it doesn't exist, then attach it to the current user
         $user = User::find($request->user()->id);
-        $result = Stock::create($request->validated());
-        $user->stocks()->attach($result->id);
-        return new StockResource($result);
+        $stock = Stock::firstOrCreate(
+            ['ticker' => request('ticker')],
+            [
+                'name' => $request->validated('name'),
+                'currency' => $request->validated('currency'),
+                'marketCapitalization' => $request->validated('marketCapitalization'),
+                'finnhubIndustry' => $request->validated('finnhubIndustry'),
+            ]
+        );
+
+        // Add a stock to the user if a record of it doesn't exist, otherwise update
+        $user->stocks()->syncWithoutDetaching($stock);
+        return new StockResource($stock);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Stock $stock, Request $request)
+    public function show(Stock $stock)
     {
-        $user = User::find($request->user()->id);
-        return StockResource::collection($user->stocks()->get());
+        return new StockResource($stock);
     }
 
     /**

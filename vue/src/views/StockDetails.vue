@@ -30,7 +30,7 @@ function setUserStock() {
   console.log(stockInfo.value)
   store.dispatch('setUserStock', stockInfo.value)
     .catch((error) => {
-      console.log(error);
+      errorMessage.value = error.response.data.message
     });
 }
 

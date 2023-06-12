@@ -10,7 +10,7 @@ class Stock extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['ticker', 'name', 'currency', 'marketCapitalization'];
+    protected $fillable = ['ticker', 'name', 'currency', 'marketCapitalization', 'finnhubIndustry'];
 
     public function users(): BelongsToMany
     {
