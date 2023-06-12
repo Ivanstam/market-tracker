@@ -35,7 +35,7 @@ const navigation = [
             <div class="flex-shrink-0">
               <img class="h-8 w-8" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company" />
             </div>
-            <div class="hidden md:block">
+            <div class="hidden sm:block">
               <div class="ml-10 flex items-baseline space-x-4">
                 <router-link v-for="item in navigation" :key="item.name" :to="item.to" active-class="bg-gray-900 text-white"
                 :class="[this.$route.name === item.to.name ?
@@ -45,7 +45,7 @@ const navigation = [
               </div>
             </div>
           </div>
-          <div class="hidden md:block">
+          <div class="hidden sm:block">
             <div class="ml-4 flex items-center md:ml-6">
               <!-- Profile dropdown -->
               <Menu as="div" class="relative ml-3">
@@ -72,7 +72,7 @@ const navigation = [
               </Menu>
             </div>
           </div>
-          <div class="-mr-2 flex md:hidden">
+          <div class="-mr-2 flex sm:hidden">
             <!-- Mobile menu button -->
             <DisclosureButton class="inline-flex items-center justify-center rounded-md bg-gray-800 p-2
             text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2
@@ -85,7 +85,7 @@ const navigation = [
         </div>
       </div>
 
-      <DisclosurePanel class="md:hidden">
+      <DisclosurePanel class="sm:hidden">
         <div class="space-y-1 px-2 pb-3 pt-2 sm:px-3">
           <router-link v-for="item in navigation" :key="item.name" as="a"
                        :to="item.to" active-class="bg-gray-900 text-white"

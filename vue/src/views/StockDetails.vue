@@ -1,5 +1,6 @@
 <script setup>
 import PageComponent from '../components/PageComponent.vue';
+import LineChart from "../components/LineChart.vue";
 import {useRoute} from "vue-router";
 import store from "../store/index.js";
 import {onMounted, ref, computed} from "vue";
@@ -77,6 +78,7 @@ function setUserStock() {
     </div>
     <pre> {{ stockInfo }}</pre>
   </PageComponent>
+  <LineChart/>
 </template>
 
 <style>

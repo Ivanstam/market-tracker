@@ -2,7 +2,7 @@
 import PageComponent from "../components/PageComponent.vue";
 import StockCards from "../components/StockCards.vue";
 import store from "../store/index.js";
-import {computed} from "vue";
+import {computed, onMounted} from "vue";
 
 const userStocks = computed(() => store.state.userStocks);
 
@@ -14,16 +14,18 @@ function getUserStocks() {
       console.log(error);
     });
 }
+
+onMounted(() => {
+  getUserStocks();
+});
 </script>
 
 <template>
   <PageComponent title="Portfolio">
-    <button @click="getUserStocks" class="flex w-full justify-center mb-2 rounded-md bg-indigo-600 px-3 py-1.5 text-sm">
-      Fetch the users' followed stocks
-    </button>
     <div class="grid grid-cols-1 gap-3">
-      <StockCards :searchedStocks="userStocks"/>
+      <StockCards v-if="userStocks[0]" :searchedStocks="userStocks"/>
     </div>
+    <div v-if="!userStocks[0]">No stocks found in your portfolio!</div>
   </PageComponent>
 </template>
 
