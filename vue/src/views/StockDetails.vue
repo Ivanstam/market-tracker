@@ -18,6 +18,8 @@ onMounted(() => {
     getStockInfo()
   }
 });
+
+// Fetch stock info from finnhub
 function getStockInfo() {
   store.dispatch('getStockInfo', symbol.value)
     .catch((error) => {
@@ -27,14 +29,13 @@ function getStockInfo() {
     });
 }
 
+// Add a stock to the users' portfolio
 function setUserStock() {
-  console.log(stockInfo.value)
   store.dispatch('setUserStock', stockInfo.value)
     .catch((error) => {
       errorMessage.value = error.response.data.message
     });
 }
-
 </script>
 
 <template>
@@ -65,6 +66,7 @@ function setUserStock() {
         <a :href="stockInfo.weburl" class="underline">Link</a>
       </div>
     </div>
+
     <div v-if="errorMessage"
          class="flex items-center justify-between py-3 px-2 mb-2 bg-gradient-to-br from-red-400 to-red-600 rounded">
       {{ errorMessage }}
@@ -76,8 +78,12 @@ function setUserStock() {
         </svg>
       </span>
     </div>
-    <pre> {{ stockInfo }}</pre>
+
+<!--    <pre> {{ stockInfo }}</pre>-->
   </PageComponent>
+  <button @click="getCandleData" class="absolute right-0 max-w-fit rounded-md bg-indigo-600 px-3 py-1.5 text-sm">
+    Get candledata
+  </button>
   <LineChart/>
 </template>
 

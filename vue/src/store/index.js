@@ -9,9 +9,9 @@ const store = createStore({
     searchedStocks: [],
     exchangeStocks: [],
     userStocks: [],
+    candleData: {},
   },
   getters: {
-
     // Paginate on the exchange list page also searches the state for keywords, if empty: return everything
     paginate: (state, getters) => (index, max, keyword) => {
       let searchedExchangeStock = keyword === '' ?
@@ -28,7 +28,13 @@ const store = createStore({
     // Testing back-end
     getUser: (state) => {
       return state.user;
-    }
+    },
+    getCandleData: (state) => {
+      return state.candleData;
+    },
+    getCurrentSymbol: (state) => {
+      return state.stockInfo.ticker;
+    },
   },
   actions,
   mutations,

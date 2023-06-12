@@ -74,3 +74,12 @@ export function searchByExchange({commit}, mic) {
       return response;
     });
 }
+
+export function getCandleData({commit}, symbol) {
+  console.log(symbol);
+  return stockClient.get(`stock/candle?symbol=${symbol}&resolution=D&from=1572651390&to=1575243390&token=${key}`)
+    .then((response) => {
+      commit('setCandleData', response);
+      return response;
+    });
+}

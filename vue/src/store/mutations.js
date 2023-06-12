@@ -26,11 +26,16 @@ export function setStockInfo(state, stockInfo) {
 }
 
 export function setSearchedStocks(state, searchedStocks) {
-  console.log(searchedStocks);
   state.searchedStocks = searchedStocks.data;
+  console.log(searchedStocks);
 }
 
 export function setExchangeStocks(state, exchangeStocks) {
   state.exchangeStocks = exchangeStocks.data;
   console.log(exchangeStocks.data)
+}
+
+export function setCandleData(state, candleData) {
+  state.candleData = candleData.data;
+  console.log(candleData.data);
 }
