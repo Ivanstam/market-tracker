@@ -7,7 +7,7 @@ import store from "../store/index.js";
 
 const currentIndex = ref(0);
 const keyword = ref('');
-const paginatedStocks = computed(() => store.getters.paginate(currentIndex.value, currentIndex.value + 10, keyword.value));
+const paginatedStocks = computed(() => store.getters.paginateExchangeStocks(currentIndex.value, currentIndex.value + 10, keyword.value));
 const exchangeSelect = ref({ "mic": "XNYS", "name": "New York Stock Exchange"});
 const exchanges = [
   {mic: 'XNYS', name: 'New York Stock Exchange'},

@@ -14,7 +14,7 @@ const store = createStore({
   },
   getters: {
     // Paginate on the exchange list page also searches the state for keywords, if empty: return everything
-    paginate: (state, getters) => (index, max, keyword) => {
+    paginateExchangeStocks: (state, getters) => (index, max, keyword) => {
       let searchedExchangeStock = keyword === '' ?
         state.exchangeStocks : getters.searchExchangeStocks(keyword);
       return searchedExchangeStock.slice(index, max);
@@ -36,6 +36,9 @@ const store = createStore({
     getCurrentSymbol: (state) => {
       return state.stockInfo.ticker;
     },
+    paginateNews: (state) => (index, max) => {
+      return state.newsData.slice(index, max);
+    }
   },
   actions,
   mutations,

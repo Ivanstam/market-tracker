@@ -4,6 +4,7 @@ export function setUser (state, userData) {
     state.user.data = userData.user;
     sessionStorage.setItem('TOKEN', userData.token);
     sessionStorage.setItem('USER_ID', userData.user.id);
+    sessionStorage.setItem('USER_NAME', userData.user.name);
 }
 
 export function logout (state) {
@@ -41,6 +42,6 @@ export function setCandleData(state, candleData) {
 }
 
 export function setNews(state, newsData) {
-  console.log(newsData);
-  state.newsData = newsData;
+  console.log(newsData.data)
+  state.newsData = newsData.data;
 }

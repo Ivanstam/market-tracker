@@ -1,7 +1,7 @@
 import {laravelClient, stockClient} from '../axios.js'
 import store from "./index.js";
 
-const key = import.meta.env.VITE_API_ALPHA_KEY;
+const key = import.meta.env.VITE_API_FINN_KEY;
 
 // Back-end user actions
 export function register({commit}, user) {
