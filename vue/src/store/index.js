@@ -5,11 +5,12 @@ import * as mutations from './mutations'
 const store = createStore({
   state: {
     user: {data: {}, token: sessionStorage.getItem("TOKEN")},
-    stockInfo: {},
     searchedStocks: [],
     exchangeStocks: [],
     userStocks: [],
+    newsData: [],
     candleData: {},
+    stockInfo: {},
   },
   getters: {
     // Paginate on the exchange list page also searches the state for keywords, if empty: return everything

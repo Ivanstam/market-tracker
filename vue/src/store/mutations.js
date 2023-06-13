@@ -39,3 +39,8 @@ export function setCandleData(state, candleData) {
   state.candleData = candleData.data;
   console.log(candleData.data);
 }
+
+export function setNews(state, newsData) {
+  console.log(newsData);
+  state.newsData = newsData;
+}

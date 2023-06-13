@@ -13,7 +13,10 @@ onMounted(() => {
 
 function searchStocks() {
   if(keyword.value !== '') {
-    store.dispatch('searchStocks', keyword.value);
+    store.dispatch('searchStocks', keyword.value)
+      .catch((error) => {
+        console.log(error);
+      })
   }
 }
 </script>

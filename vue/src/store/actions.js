@@ -51,6 +51,15 @@ export function setUserStock({ commit }) {
 }
 
 // Alphavantage calls/actions
+
+export function getNews({commit}, category) {
+  return stockClient.get(`news/?category=${category}&token=${key}`)
+    .then((response) => {
+      commit('setNews', response);
+      return response;
+    });
+}
+
 export function getStockInfo({ commit }, symbol) {
   return stockClient.get(`stock/profile2?symbol=${symbol}&token=${key}`)
     .then((response) => {

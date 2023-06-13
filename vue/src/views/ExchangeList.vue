@@ -9,9 +9,17 @@ const currentIndex = ref(0);
 const keyword = ref('');
 const paginatedStocks = computed(() => store.getters.paginate(currentIndex.value, currentIndex.value + 10, keyword.value));
 const exchangeSelect = ref({ "mic": "XNYS", "name": "New York Stock Exchange"});
-
+const exchanges = [
+  {mic: 'XNYS', name: 'New York Stock Exchange'},
+  {mic: 'BATS', name: 'BATS Global Markets',},
+  {mic: 'XNAS', name: 'NASDAQ',},
+  {mic: 'XASE', name: 'American Stock Exchange',}
+]
 function searchExchange() {
-  store.dispatch('searchByExchange', exchangeSelect.value.mic);
+  store.dispatch('searchByExchange', exchangeSelect.value.mic)
+    .catch((error) => {
+      console.log(error);
+    })
 }
 
 </script>
@@ -27,7 +35,7 @@ function searchExchange() {
           font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500">Next</button>
       </div>
       <div>
-        <SelectMenu v-model="exchangeSelect"/>
+        <SelectMenu v-if="exchanges[0]" :selections="exchanges" v-model="exchangeSelect"/>
       </div>
       <button @click="searchExchange" class="flex w-full mb-2 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm
           font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500">Fetch exchange results</button>

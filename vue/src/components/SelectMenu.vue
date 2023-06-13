@@ -13,14 +13,16 @@
 
       <transition leave-active-class="transition ease-in duration-100"
                   leave-from-class="opacity-100" leave-to-class="opacity-0">
-        <ListboxOptions class="absolute  mt-1 max-h-56 w-fit overflow-auto rounded-md bg-slate-200 py-1 text-base
+        <ListboxOptions class="absolute  mt-1 max-h-56 max-w-fit overflow-auto rounded-md bg-slate-200 py-1 text-base
         shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-          <ListboxOption as="template" v-for="exchange in exchanges" :key="exchange.mic"
-                         :value="exchange" v-slot="{ active, selected }">
+          <ListboxOption as="template" v-for="selection in selections" :key="selection.key"
+                         :value="selection" v-slot="{ active, selected }">
             <li :class="[active ? 'bg-indigo-600 text-white' : 'text-gray-900',
             'relative cursor-default select-none py-2 pl-3 pr-9']">
               <div class="flex items-center">
-                <span :class="[selected ? 'font-semibold' : 'font-normal', 'ml-3 block truncate']">{{ exchange.name }}</span>
+                <span :class="[selected ? 'font-semibold' : 'font-normal', 'ml-3 block truncate']">
+                  {{ selection.name }}
+                </span>
               </div>
 
               <span v-if="selected" :class="[active ? 'text-white' : 'text-indigo-600',
@@ -35,17 +37,12 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
 import { Listbox, ListboxButton, ListboxLabel, ListboxOption, ListboxOptions } from '@headlessui/vue'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/vue/20/solid'
 
-// TODO: Make into prop for multi-use
-const exchanges = [
-  {mic: 'XNYS', name: 'New York Stock Exchange'},
-  {mic: 'BATS', name: 'BATS Global Markets',},
-  {mic: 'XNAS', name: 'NASDAQ',},
-  {mic: 'XASE', name: 'American Stock Exchange',}
-]
-const selected = ref(exchanges[0])
+const props = defineProps({
+  selections: Object,
+});
+const selected = props.selections[0];
 
 </script>

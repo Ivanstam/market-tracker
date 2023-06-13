@@ -22,7 +22,17 @@ onMounted(() => {
 
 <template>
   <PageComponent title="Portfolio">
-    <div class="grid grid-cols-1 gap-3">
+    <div class="grid grid-cols-2 gap-3 flex-col rounded border-2 border-slate-700 p-2">
+      <div class="relative w-36 h-36 bg-slate-600 rounded-full items-baseline
+      text-center p-5 border-2 border-slate-700 grid grid-cols-1">
+        <div class="text-4xl font-bold">{{ userStocks.length }}</div>
+        <div>Portfolio entries</div>
+      </div>
+      <div class="text-center">Here you will find your followed companies and stocks<br>
+        To follow a stock go to their respective page and click 'add to portfolio'
+      </div>
+    </div>
+    <div class="grid grid-cols-1 gap-3 mt-2">
       <StockCards v-if="userStocks[0]" :searchedStocks="userStocks"/>
     </div>
     <div v-if="!userStocks[0]">No stocks found in your portfolio!</div>
