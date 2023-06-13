@@ -1,6 +1,6 @@
 <script setup>
 import PageComponent from '../components/PageComponent.vue';
-import LineChart from "../components/LineChart.vue";
+import StockLineChart from "../components/StockLineChart.vue";
 import {useRoute} from "vue-router";
 import store from "../store/index.js";
 import {onMounted, ref, computed} from "vue";
@@ -81,10 +81,7 @@ function setUserStock() {
 
 <!--    <pre> {{ stockInfo }}</pre>-->
   </PageComponent>
-  <button @click="getCandleData" class="absolute right-0 max-w-fit rounded-md bg-indigo-600 px-3 py-1.5 text-sm">
-    Get candledata
-  </button>
-  <LineChart/>
+  <StockLineChart/>
 </template>
 
 <style>

@@ -76,8 +76,9 @@ export function searchByExchange({commit}, mic) {
 }
 
 export function getCandleData({commit}, symbol) {
-  console.log(symbol);
-  return stockClient.get(`stock/candle?symbol=${symbol}&resolution=D&from=1572651390&to=1575243390&token=${key}`)
+  const unixToday = Math.floor((Date.now() / 1000));
+  const unixLastYear = Math.floor(unixToday - 31536000)
+  return stockClient.get(`stock/candle?symbol=${symbol}&resolution=D&from=${unixLastYear}&to=${unixToday}&token=${key}`)
     .then((response) => {
       commit('setCandleData', response);
       return response;
