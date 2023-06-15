@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('stocks', function (Blueprint $table) {
             $table->id();
-            $table->string('ticker', 100)->nullable();
+            $table->string('ticker', 10);
             $table->string('name', 100);
-            $table->string('currency', 10);
-            $table->double('marketCapitalization');
+            $table->string('currency', 10)->nullable();
+            $table->double('marketCapitalization')->nullable();
+            $table->double('sharePrice')->nullable();
             $table->string('finnhubIndustry', 100)->nullable();
             $table->timestamps();
         });

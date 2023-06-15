@@ -24,7 +24,7 @@ const store = createStore({
     },
     getStockInfo: (state) => {
       const stockInfo = state.stockInfo;
-      // Both are in thousands
+      // Cap in millions, shares in thousands
       stockInfo.marketCapitalization = Math.floor(state.stockInfo.marketCapitalization);
       stockInfo.shareOutstanding = state.stockInfo.shareOutstanding * 1000;
       // Add new calculated shareprice attribute

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(\App\Models\User::class, 'user_id');
             $table->foreignIdFor(\App\Models\Stock::class, 'stock_id');
+            $table->integer('amount')->default('0');
             $table->timestamps();
         });
     }

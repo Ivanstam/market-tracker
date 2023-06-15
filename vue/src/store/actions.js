@@ -40,8 +40,9 @@ export function getUserStocks({ commit }, user) {
     });
 }
 
-export function setUserStock({ commit }) {
+export function setUserStock({ commit }, stockAmount) {
   let stockInfo = JSON.parse(JSON.stringify(store.state.stockInfo));
+  stockInfo.stockAmount = stockAmount;
   console.log(stockInfo);
   return laravelClient.post('/stocks', stockInfo)
     .then((response) => {

@@ -35,12 +35,14 @@ class StockController extends Controller
                 'name' => $request->validated('name'),
                 'currency' => $request->validated('currency'),
                 'marketCapitalization' => $request->validated('marketCapitalization'),
+                'sharePrice' => $request->validated('sharePrice'),
                 'finnhubIndustry' => $request->validated('finnhubIndustry'),
             ]
         );
 
         // Add a stock to the user if a record of it doesn't exist, otherwise update
         $user->stocks()->syncWithoutDetaching($stock);
+        $user->stocks()->updateExistingPivot($stock, ['amount'=>request('stockAmount')]);
         return new StockResource($stock);
     }
 

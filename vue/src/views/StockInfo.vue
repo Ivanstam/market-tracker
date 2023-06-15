@@ -31,8 +31,8 @@ function getStockInfo() {
 </script>
 
 <template>
-  <PageComponent v-if="!errorBool" title="Stock Details">
-    <StockInfoCard :stockInfo="stockInfo"/>
+  <PageComponent title="Stock Details">
+    <StockInfoCard v-if="!errorBool" :stockInfo="stockInfo"/>
     <div v-if="errorMessage"
          class="flex items-center justify-between py-3 px-2 mb-2 bg-gradient-to-br from-red-400 to-red-600 rounded">
       {{ errorMessage }}
@@ -44,8 +44,6 @@ function getStockInfo() {
         </svg>
       </span>
     </div>
-
-<!--    <pre> {{ stockInfo }}</pre>-->
   </PageComponent>
   <StockLineChart/>
 </template>

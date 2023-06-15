@@ -26,6 +26,7 @@ class StoreStockRequest extends FormRequest
             'name' => 'required|string|max:255',
             'currency' => 'string',
             'marketCapitalization' => 'numeric',
+            'sharePrice' => 'numeric',
             'finnhubIndustry' => 'string',
         ];
     }

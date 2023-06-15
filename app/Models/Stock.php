@@ -10,10 +10,12 @@ class Stock extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['ticker', 'name', 'currency', 'marketCapitalization', 'finnhubIndustry'];
+    protected $fillable = ['ticker', 'name', 'currency', 'marketCapitalization', 'sharePrice', 'finnhubIndustry'];
 
     public function users(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'user_stock');
+        return $this
+            ->belongsToMany(User::class, 'user_stock')
+            ->withPivot('amount');
     }
 }

@@ -20,7 +20,9 @@ class StockResource extends JsonResource
             'description' => $this->name,
             'currency' => $this->currency,
             'marketCapitalization' => $this->marketCapitalization,
+            'sharePrice' => $this->sharePrice,
             'type' => $this->finnhubIndustry,
+            'shareAmount' => $this->users()->first()->pivot->amount,
         ];
     }
 }
