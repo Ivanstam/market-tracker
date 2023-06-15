@@ -3,7 +3,7 @@ import Dashboard from "../views/Dashboard.vue";
 import Login from "../views/Login.vue";
 import Register from "../views/Register.vue";
 import Stocks from "../views/Stocks.vue";
-import StockDetails from "../views/StockDetails.vue";
+import StockInfo from "../views/StockInfo.vue";
 import DefaultLayout from "../components/DefaultLayout.vue"
 import Authlayout from "../components/Authlayout.vue"
 import store from "../store/index.js";
@@ -19,7 +19,7 @@ const routes = [
     children: [
       {path: '/dashboard', name: 'Dashboard', component: Dashboard},
       {path: '/stocks', name: 'Stocks', component: Stocks},
-      {path: '/stocks/:symbol', name: 'StockDetails', component: StockDetails},
+      {path: '/stocks/:symbol', name: 'StockInfo', component: StockInfo},
       {path: '/exchanges', name: 'ExchangeList', component: ExchangeList},
       {path: '/portfolio', name: 'Portfolio', component: Portfolio}
     ]

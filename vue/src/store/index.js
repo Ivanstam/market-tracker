@@ -22,9 +22,14 @@ const store = createStore({
     searchExchangeStocks: (state) => (keyword) => {
       return state.exchangeStocks.filter(stock => stock.description.match(keyword.toUpperCase()));
     },
-    getStockCap: (state) => {
-      const marketCap = state.stockInfo.marketCapitalization;
-      return Math.floor(marketCap).toLocaleString() + ' K';
+    getStockInfo: (state) => {
+      const stockInfo = state.stockInfo;
+      // Both are in thousands
+      stockInfo.marketCapitalization = Math.floor(state.stockInfo.marketCapitalization);
+      stockInfo.shareOutstanding = state.stockInfo.shareOutstanding * 1000;
+      // Add new calculated shareprice attribute
+      stockInfo.sharePrice = (stockInfo.marketCapitalization / stockInfo.shareOutstanding * 1000).toFixed(2);
+      return stockInfo;
     },
     // Testing back-end
     getUser: (state) => {

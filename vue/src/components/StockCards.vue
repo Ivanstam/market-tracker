@@ -12,7 +12,7 @@ defineProps({
     <div v-html="stock.description" class="text-center"></div>
     <div v-html="stock.type" class="text-center"></div>
     <div class="text-right">
-      <router-link :to="{ name: 'StockDetails', params: { symbol: stock.symbol} }"
+      <router-link :to="{ name: 'StockInfo', params: { symbol: stock.symbol} }"
                    class="py-1 px-2 max-w-fit text-end text-white bg-slate-500 rounded-md hover:drop-shadow-xl">
         Details
       </router-link>
