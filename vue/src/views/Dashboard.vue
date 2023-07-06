@@ -5,8 +5,9 @@ import NewsCards from "../components/NewsCards.vue";
 import {computed, onMounted, ref} from "vue";
 import store from "../store/index.js";
 
+const currentIndex = ref(0);
 const newsSelect = ref({ "cat": "general", "name": "General News"});
-const currentIndex = ref(0)
+const newsAmount = computed(() => store.getters.getNewsAmount);
 const paginatedNews = computed(() => store.getters.paginateNews(currentIndex.value, currentIndex.value + 10));
 const username = sessionStorage.getItem('USER_NAME');
 const newsCategory = [
@@ -36,11 +37,11 @@ onMounted(() => {
         <button @click="currentIndex -= 10" :disabled="currentIndex < 1"
                 class="flex w-full mb-2 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold
                 leading-6 text-white shadow-sm hover:bg-indigo-500">Previous</button>
-        <button @click="currentIndex += 10" class="flex w-full mb-2 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm
+        <button @click="currentIndex += 10" :disabled="currentIndex + 10 >= newsAmount" class="flex w-full mb-2 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm
           font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500">Next</button>
       </div>
       <SelectMenu v-if="newsCategory[0]" :selections="newsCategory" v-model="newsSelect"/>
-      <button @click="getNews" class="flex w-full mb-2 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm
+      <button @click="currentIndex = 0;getNews()" class="flex w-full mb-2 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm
           font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500">Load news</button>
     </div>
     <div class="grid lg:grid-cols-2 gap-3">

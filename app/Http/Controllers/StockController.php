@@ -29,7 +29,7 @@ class StockController extends Controller
     {
         // Attempt to store a stock if it doesn't exist, then attach it to the current user
         $user = User::find($request->user()->id);
-        $stock = Stock::firstOrCreate(
+        $stock = Stock::updateOrCreate(
             ['ticker' => request('ticker')],
             [
                 'name' => $request->validated('name'),

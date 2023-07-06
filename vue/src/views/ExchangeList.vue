@@ -5,7 +5,7 @@ import SelectMenu from "../components/SelectMenu.vue";
 import {computed, ref} from "vue";
 import store from "../store/index.js";
 
-const currentIndex = ref(0);
+let currentIndex = ref(0);
 const keyword = ref('');
 const paginatedStocks = computed(() => store.getters.paginateExchangeStocks(currentIndex.value, currentIndex.value + 10, keyword.value));
 const exchangeSelect = ref({ "mic": "XNYS", "name": "New York Stock Exchange"});
@@ -37,7 +37,7 @@ function searchExchange() {
       <div>
         <SelectMenu v-if="exchanges[0]" :selections="exchanges" v-model="exchangeSelect"/>
       </div>
-      <button @click="searchExchange" class="flex w-full mb-2 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm
+      <button @click="currentIndex = 0; searchExchange()" class="flex w-full mb-2 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm
           font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500">Fetch exchange results</button>
     </div>
     <input v-model="keyword" type="text" placeholder="Search for stocks" @change="currentIndex = 0"

@@ -14,8 +14,12 @@ export function logout (state) {
   sessionStorage.removeItem('USER_ID');
 }
 
-// Double wrapping of data property by laravel resource so both action and mutation will unwrap a data layer
+/* Double wrapping of data property by laravel resource so both action and mutation will unwrap a data layer
+   Calculate the equity total / per stock here to avoid redundancy
+*/
 export function setUserStocks(state, userStocks) {
+  userStocks.data.forEach(stock => stock.equity = stock.shareAmount * stock.sharePrice)
+  userStocks.data.equityTotal = userStocks.data.reduce((total, stock) => total + stock.equity, 0).toFixed(2);
   state.userStocks = userStocks.data;
   console.log(userStocks.data);
 }

@@ -31,7 +31,13 @@ const store = createStore({
       stockInfo.sharePrice = (stockInfo.marketCapitalization / stockInfo.shareOutstanding * 1000).toFixed(2);
       return stockInfo;
     },
-    // Testing back-end
+    getUserStocks: (state) => {
+      const userStocks = state.userStocks;
+      return userStocks;
+    },
+    getNewsAmount: (state) => {
+      return state.newsData.length;
+    },
     getUser: (state) => {
       return state.user;
     },
