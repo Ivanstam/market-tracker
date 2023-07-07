@@ -11,6 +11,7 @@ class StoreStockRequest extends FormRequest
      */
     public function authorize(): bool
     {
+        // Currently like this for simplicity
         return true;
     }
 

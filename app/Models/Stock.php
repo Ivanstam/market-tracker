@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Stock extends Model
 {
@@ -17,5 +18,10 @@ class Stock extends Model
         return $this
             ->belongsToMany(User::class, 'user_stock')
             ->withPivot('amount');
+    }
+
+    public function candles(): HasMany
+    {
+        return $this->hasMany(Candle::class);
     }
 }

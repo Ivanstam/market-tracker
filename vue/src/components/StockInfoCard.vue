@@ -6,12 +6,15 @@ defineProps({
     stockInfo: Object,
 })
 const shareAmount = ref();
+let errorMessage = ref('');
+let errorBool = false;
 
 // Add a stock to the users' portfolio
 function setUserStock() {
   store.dispatch('setUserStock', shareAmount.value)
     .catch((error) => {
-      errorMessage.value = error.response.data.message
+      console.log(error.response.status);
+      errorMessage.value = error.response.message
     });
 }
 </script>
