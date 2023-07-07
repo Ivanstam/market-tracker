@@ -15,7 +15,7 @@ defineProps({
   <main>
     <div class="mx-auto max-w-7xl py-3 px-4">
       <slot>
-
+        <!--    Body content here    -->
       </slot>
     </div>
   </main>

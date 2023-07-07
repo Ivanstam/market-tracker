@@ -11,6 +11,7 @@ class UpdateStockRequest extends FormRequest
      */
     public function authorize(): bool
     {
+        // Currently like this for simplicity
         return false;
     }
 
@@ -22,7 +23,7 @@ class UpdateStockRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            // TODO: needs researching!
         ];
     }
 }

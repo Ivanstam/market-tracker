@@ -44,6 +44,7 @@ const router = createRouter({
 });
 
 // Redirect to login/register or the dashboard when unauthorized or authorized respectively
+// TODO: Apply this and server 'handshaking' better instead of a simple local token
 router.beforeEach((to, from, next) => {
   if (to.meta.requiresAuth && !store.state.user.token) {
     next({name: 'Login'});

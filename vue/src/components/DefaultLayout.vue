@@ -18,6 +18,7 @@ function logout(){
     });
 }
 
+// TODO: implement this in a more reasonable place, not hardcoded.
 const navigation = [
   { name: 'Dashboard', to: {name: 'Dashboard'}},
   { name: 'Stocks', to: {name: 'Stocks'}},

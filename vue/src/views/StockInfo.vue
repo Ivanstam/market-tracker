@@ -9,6 +9,7 @@ import {onMounted, ref, computed} from "vue";
 const route = useRoute();
 const symbol = ref('');
 const stockInfo = computed(() => store.getters.getStockInfo);
+// TODO: implement success message this same way when stock has been saved in portfolio for user feedback
 let errorMessage = ref('');
 let errorBool = false;
 

@@ -6,8 +6,6 @@ import {computed, onMounted} from "vue";
 
 const userStocks = computed(() => store.getters.getUserStocks);
 
-// For testing purposes
-// Makes a post request to the laravel server, asks for all the stocks that are attached to the current user
 function getUserStocks() {
   store.dispatch('getUserStocks', sessionStorage.getItem('USER_ID'))
     .catch((error) => {

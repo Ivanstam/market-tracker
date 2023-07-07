@@ -19,9 +19,11 @@ const store = createStore({
         state.exchangeStocks : getters.searchExchangeStocks(keyword);
       return searchedExchangeStock.slice(index, max);
     },
+    // Currently for use during pagination
     searchExchangeStocks: (state) => (keyword) => {
       return state.exchangeStocks.filter(stock => stock.description.match(keyword.toUpperCase()));
     },
+    // TODO: Move calculated variables to mutations for a better overview
     getStockInfo: (state) => {
       const stockInfo = state.stockInfo;
       // Cap in millions, shares in thousands

@@ -1,11 +1,10 @@
 <script setup>
-
 import {computed, onMounted} from "vue";
 import { Chart, registerables } from 'chart.js';
 import store from "../store/index.js";
 import {useRoute} from "vue-router";
-Chart.register(...registerables);
 
+Chart.register(...registerables);
 const candleData = computed(() => store.getters.getCandleData);
 const route = useRoute();
 
@@ -36,7 +35,7 @@ function initialize(data) {
         {
           type: 'line',
           label: 'Close',
-          data: candleData.value.c,
+          data: candleData.value.c, // closing value
           borderWidth: 1,
           yAxisID: 'y1'
         },

@@ -5,7 +5,7 @@ const key = import.meta.env.VITE_API_FINN_KEY;
 
 // Back-end user actions
 export function register({commit}, user) {
-    // Post request to the auth controller, return user data and token to state and session
+  // Post request to the auth controller, return user data and token to state and session
   return laravelClient.post('/register', user)
     .then((response) => {
       commit('setUser', response.data);
@@ -13,8 +13,8 @@ export function register({commit}, user) {
     })
 }
 
+// Post request to the auth controller, return user data and token to state and session
 export function login({commit}, user) {
-  // Post request to the auth controller, return user data and token to state and session
   return laravelClient.post('/login', user)
     .then((response) => {
       commit('setUser', response.data);
@@ -22,8 +22,8 @@ export function login({commit}, user) {
     })
 }
 
+// Post request to the auth controller, with the session to be wiped
 export function logout({commit}) {
-  // Post request to the auth controller, with the session to be wiped
   return laravelClient.post('/logout')
     .then((response) => {
       commit('logout');
@@ -31,6 +31,7 @@ export function logout({commit}) {
   })
 }
 
+// Get request to the stock controller index, return all related stock
 export function getUserStocks({ commit }, user) {
   console.log(user);
   return laravelClient.get('/stocks', user)
@@ -40,6 +41,7 @@ export function getUserStocks({ commit }, user) {
     });
 }
 
+// Post request to the stock controller store, returns the newly created stock
 export function setUserStock({ commit }, stockAmount) {
   let stockInfo = JSON.parse(JSON.stringify(store.state.stockInfo));
   stockInfo.stockAmount = stockAmount;
@@ -52,7 +54,7 @@ export function setUserStock({ commit }, stockAmount) {
 }
 
 // Alphavantage calls/actions
-
+// Stock fundamentals > Market news
 export function getNews({commit}, category) {
   return stockClient.get(`news/?category=${category}&token=${key}`)
     .then((response) => {
@@ -61,6 +63,7 @@ export function getNews({commit}, category) {
     });
 }
 
+// Stock fundamentals > Company profile 2
 export function getStockInfo({ commit }, symbol) {
   return stockClient.get(`stock/profile2?symbol=${symbol}&token=${key}`)
     .then((response) => {
@@ -69,6 +72,7 @@ export function getStockInfo({ commit }, symbol) {
     });
 }
 
+// Stock fundamentals > symbol lookup
 export function searchStocks({commit}, keyword) {
   return stockClient.get(`search?q=${keyword}&token=${key}`)
     .then((response) => {
@@ -77,6 +81,7 @@ export function searchStocks({commit}, keyword) {
     });
 }
 
+// Stock fundamentals > Stock symbol (only for stocks, ETFs)
 export function searchByExchange({commit}, mic) {
   return stockClient.get(`stock/symbol?exchange=US&mic=${mic}&token=${key}`)
     .then((response) => {
@@ -85,6 +90,7 @@ export function searchByExchange({commit}, mic) {
     });
 }
 
+// Stock price > Candles (OHLCV)
 export function getCandleData({commit}, symbol) {
   const unixToday = Math.floor((Date.now() / 1000));
   const unixLastYear = Math.floor(unixToday - 31536000)

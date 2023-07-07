@@ -27,7 +27,9 @@ class StockController extends Controller
      */
     public function store(StoreStockRequest $request)
     {
-        // Attempt to store a stock if it doesn't exist, then attach it to the current user
+        /* Attempt to store a stock if it doesn't exist, then attach it to the current user,
+        If the stock already exists; attempt to update both itself and association
+        */
         $user = User::find($request->user()->id);
         $stock = Stock::updateOrCreate(
             ['ticker' => request('ticker')],
@@ -51,6 +53,7 @@ class StockController extends Controller
      */
     public function show(Stock $stock)
     {
+        // TODO: to be used when data is (semi-) up-to-date and data can be accessed with our own back-end
         return new StockResource($stock);
     }
 
@@ -59,7 +62,8 @@ class StockController extends Controller
      */
     public function update(UpdateStockRequest $request, Stock $stock)
     {
-        //
+        // Currently not used since store already checks for update conditions
+        // TODO: might implement whenever server-side TA is made available
     }
 
     /**
@@ -67,6 +71,7 @@ class StockController extends Controller
      */
     public function destroy(Stock $stock)
     {
-        //
+        // Why -ever- delete our valuable data?
+        // TODO: JK, needs to be implemented, most likely only possible with validated roles
     }
 }

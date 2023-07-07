@@ -1,3 +1,14 @@
+<script setup>
+import { Listbox, ListboxButton, ListboxLabel, ListboxOption, ListboxOptions } from '@headlessui/vue'
+import { CheckIcon, ChevronUpDownIcon } from '@heroicons/vue/20/solid'
+
+const props = defineProps({
+  selections: Object,
+});
+const selected = props.selections[0];
+
+</script>
+
 <template>
   <Listbox as="div" v-model="selected">
       <ListboxButton class="relative w-full cursor-default rounded-md bg-slate-200 py-1.5 pl-3 pr-10 text-left
@@ -35,14 +46,3 @@
       </transition>
   </Listbox>
 </template>
-
-<script setup>
-import { Listbox, ListboxButton, ListboxLabel, ListboxOption, ListboxOptions } from '@headlessui/vue'
-import { CheckIcon, ChevronUpDownIcon } from '@heroicons/vue/20/solid'
-
-const props = defineProps({
-  selections: Object,
-});
-const selected = props.selections[0];
-
-</script>
